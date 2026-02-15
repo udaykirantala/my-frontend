@@ -19,14 +19,32 @@ import {
   Favorite,
 } from "@mui/icons-material";
 
+import { Link as RouterLink } from "react-router-dom";
+
 export default function Footer() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+  // ✅ Updated links with proper paths
   const links = {
-    product: ["Features", "How it Works", "Pricing", "API"],
-    support: ["Help Center", "FAQ", "Contact Us", "Status"],
-    legal: ["Privacy Policy", "Terms of Service", "Cookie Policy", "Disclaimer"],
+    product: [
+      { label: "Features", path: "/features" },
+      { label: "How it Works", path: "/howitworks" },
+      { label: "Pricing", path: "/pricing" },
+      { label: "API", path: "/api" },
+    ],
+    support: [
+      { label: "Help Center", path: "/help" },
+      { label: "FAQ", path: "/faq" },
+      { label: "Contact Us", path: "/contact" },
+      { label: "Status", path: "/status" },
+    ],
+    legal: [
+      { label: "Privacy Policy", path: "/privacypolicy" },
+      { label: "Terms of Service", path: "/terms" },
+      { label: "Cookie Policy", path: "/cookiepolicy" },
+      { label: "Disclaimer", path: "/disclaimer" },
+    ],
   };
 
   return (
@@ -43,7 +61,7 @@ export default function Footer() {
         }`,
         pt: { xs: 6, md: 8 },
         pb: 3,
-        mt: 6
+        mt: 6,
       }}
     >
       <Container maxWidth="lg">
@@ -93,7 +111,10 @@ export default function Footer() {
                 </Typography>
               </Box>
 
-              <Typography color="text.secondary" sx={{ fontSize: ".9rem", mb: 2 }}>
+              <Typography
+                color="text.secondary"
+                sx={{ fontSize: ".9rem", mb: 2 }}
+              >
                 Download content instantly from your favorite platforms.
                 Free, secure & no signup required.
               </Typography>
@@ -109,8 +130,8 @@ export default function Footer() {
             </Box>
 
             {/* Footer link groups */}
-            {[links.product, links.support, links.legal].map((group, idx) => (
-              <Box key={idx}>
+            {Object.entries(links).map(([key, group], idx) => (
+              <Box key={key}>
                 <Typography
                   sx={{
                     fontWeight: 700,
@@ -118,22 +139,27 @@ export default function Footer() {
                     mb: 2,
                   }}
                 >
-                  {idx === 0 ? "PRODUCT" : idx === 1 ? "SUPPORT" : "LEGAL"}
+                  {key.toUpperCase()}
                 </Typography>
 
                 <Stack spacing={1}>
-                  {group.map((label) => (
+                  {group.map((item) => (
                     <Link
-                      key={label}
+                      key={item.label}
+                      component={RouterLink}
+                      to={item.path}
                       underline="none"
-                      href="#"
                       sx={{
                         color: "text.secondary",
                         fontSize: ".85rem",
-                        "&:hover": { color: "primary.main" },
+                        transition: "all 0.2s ease",
+                        "&:hover": {
+                          color: "primary.main",
+                          transform: "translateX(4px)",
+                        },
                       }}
                     >
-                      {label}
+                      {item.label}
                     </Link>
                   ))}
                 </Stack>
@@ -152,14 +178,23 @@ export default function Footer() {
               gap: 2,
             }}
           >
-            <Typography color="text.secondary" sx={{ fontSize: ".85rem" }}>
+            <Typography
+              color="text.secondary"
+              sx={{ fontSize: ".85rem" }}
+            >
               © {new Date().getFullYear()} QuickDownload. All rights reserved.
             </Typography>
 
-            <Box sx={{ display: "flex", alignItems: "center", gap: .5 }}>
-              <Typography sx={{ fontSize: ".85rem" }}>Made with</Typography>
-              <Favorite sx={{ fontSize: 16, color: theme.palette.error.main }} />
-              <Typography sx={{ fontSize: ".85rem" }}>for creators</Typography>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+              <Typography sx={{ fontSize: ".85rem" }}>
+                Made with
+              </Typography>
+              <Favorite
+                sx={{ fontSize: 16, color: theme.palette.error.main }}
+              />
+              <Typography sx={{ fontSize: ".85rem" }}>
+                for creators
+              </Typography>
             </Box>
           </Box>
         </Stack>
