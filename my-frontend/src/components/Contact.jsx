@@ -9,6 +9,7 @@ import {
     useTheme,
     alpha,
 } from "@mui/material";
+import { Link } from "@mui/material";
 
 export default function Contact() {
     const theme = useTheme();

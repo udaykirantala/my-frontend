@@ -7,6 +7,7 @@ import {
   useTheme,
   alpha,
 } from "@mui/material";
+import { Link } from "@mui/material";
 
 const PrivacyPolicy = () => {
   const theme = useTheme();
