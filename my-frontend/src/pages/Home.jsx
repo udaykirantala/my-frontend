@@ -1,13 +1,17 @@
+import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import { useState } from "react";
-import { ThemeProvider, CssBaseline, Box } from "@mui/material";
-import { lightTheme, darkTheme } from "../theme.jsx";
+import { darkTheme, lightTheme } from "../theme.jsx";
 
-import Navbar from "../components/Navbar.jsx";
-import InputSection from "../components/InputSection.jsx";
+import DownloadModal from "../components/DownloadModal.jsx";
 import FAQ from "../components/FAQ";
 import Footer from "../components/Footer.jsx";
-import DownloadModal from "../components/DownloadModal.jsx";
+import InputSection from "../components/InputSection.jsx";
+import Navbar from "../components/Navbar.jsx";
 import PrivacyBanner from "../components/PrivacyBanner.jsx";
+import HowItWorks from "../components/HowItWorks.jsx";
+import SupportedPlatforms from "../components/SupportedPlatforms.jsx";
+import WhyUseDownloader from "../components/WhyUseDownloader.jsx";
+import SupportedFormats from "../components/SupportedFormats.jsx";
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
@@ -19,7 +23,6 @@ export default function Home() {
   const [inputUrl, setInputUrl] = useState("");
 
 
-  const handleToggleDarkMode = () => setDarkMode(!darkMode);
 
   const handleDownload = async (url) => {
     setModalOpen(true);
@@ -55,13 +58,7 @@ export default function Home() {
 
 
   return (
-    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      <CssBaseline />
-
       <Box sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-        
-        <Navbar darkMode={darkMode} onToggleDarkMode={handleToggleDarkMode} />
-
         <Box sx={{ flex: 1 }}>
           
           <InputSection onDownload={handleDownload} inputUrl={inputUrl} setInputUrl={setInputUrl} />
@@ -93,7 +90,10 @@ export default function Home() {
               </button>
             </Box>
           )}
-
+          <HowItWorks/>
+          <SupportedPlatforms/>
+          <WhyUseDownloader/>
+          <SupportedFormats/>
           <FAQ />
         </Box>
 
@@ -108,6 +108,5 @@ export default function Home() {
 
         <PrivacyBanner />
       </Box>
-    </ThemeProvider>
   );
 }

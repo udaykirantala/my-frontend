@@ -45,7 +45,7 @@ export default function FAQ() {
   return (
     <Box
       sx={{
-        py: { xs: 6, md: 10 },
+        pt:'25px',
         backgroundColor:
           theme.palette.mode === "dark"
             ? "rgba(255,255,255,0.02)"

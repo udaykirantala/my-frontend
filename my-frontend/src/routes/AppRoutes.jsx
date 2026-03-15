@@ -16,7 +16,6 @@ import HelpCenter from "../components/HelpCenter.jsx";
 
 export default function AppRoutes() {
   return (
-    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
@@ -25,13 +24,12 @@ export default function AppRoutes() {
         <Route path="/disclaimer" element={<Disclaimer />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<FAQ />} />
-        <Route path="/howitworks" element={<HowItWorks />} />
+        <Route path="/howitworks" element={<HowItWorks/>} />
         <Route path="/features" element={<Features />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/api" element={<API />} />
         <Route path="/status" element={<Status />} />
         <Route path="/help" element={<HelpCenter />} />
       </Routes>
-    </BrowserRouter>
   );
 }

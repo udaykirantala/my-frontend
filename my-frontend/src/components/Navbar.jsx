@@ -11,12 +11,15 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
+
 import {
   Brightness4,
   Brightness7,
   Language,
   Download as DownloadIcon,
 } from "@mui/icons-material";
+
+import { Link as RouterLink } from "react-router-dom";
 
 export default function Navbar({ darkMode, onToggleDarkMode }) {
   const [langAnchor, setLangAnchor] = useState(null);
@@ -50,7 +53,20 @@ export default function Navbar({ darkMode, onToggleDarkMode }) {
     >
       <Container maxWidth="lg">
         <Toolbar disableGutters sx={{ minHeight: { xs: 64, sm: 72 } }}>
-          <Box sx={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
+
+          {/* Logo Section */}
+          <Box
+            component={RouterLink}
+            to="/"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              flexGrow: 1,
+              textDecoration: "none",
+              color: "inherit",
+              cursor: "pointer",
+            }}
+          >
             <Box
               sx={{
                 width: 40,
@@ -81,6 +97,7 @@ export default function Navbar({ darkMode, onToggleDarkMode }) {
             </Typography>
           </Box>
 
+          {/* Right Section */}
           <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
             <IconButton
               onClick={handleLanguageClick}
@@ -130,6 +147,7 @@ export default function Navbar({ darkMode, onToggleDarkMode }) {
               </Typography>
             )}
           </Box>
+
         </Toolbar>
       </Container>
     </AppBar>
